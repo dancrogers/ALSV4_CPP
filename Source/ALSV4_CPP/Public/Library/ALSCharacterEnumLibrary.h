@@ -3,8 +3,7 @@
 // License:         MIT License (http://www.opensource.org/licenses/mit-license.php)
 // Source Code:     https://github.com/dyanikoglu/ALSV4_CPP
 // Original Author: Doğa Can Yanıkoğlu
-// Contributors:    
-
+// Contributors:
 
 #pragma once
 
@@ -25,8 +24,7 @@ static FORCEINLINE FString GetEnumerationToString(const Enumeration InValue)
 	return StaticEnum<Enumeration>()->GetNameStringByValue(static_cast<int64>(InValue));
 }
 
-
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSGait : uint8
 {
 	Walking,
@@ -34,7 +32,7 @@ enum class EALSGait : uint8
 	Sprinting
 };
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSMovementAction : uint8
 {
 	None,
@@ -44,7 +42,7 @@ enum class EALSMovementAction : uint8
 	GettingUp
 };
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSMovementState : uint8
 {
 	None,
@@ -54,7 +52,7 @@ enum class EALSMovementState : uint8
 	Ragdoll
 };
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSOverlayState : uint8
 {
 	Default,
@@ -69,10 +67,11 @@ enum class EALSOverlayState : uint8
 	Torch,
 	Binoculars,
 	Box,
-	Barrel
+	Barrel,
+	SwordAndShield
 };
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSRotationMode : uint8
 {
 	VelocityDirection,
@@ -80,21 +79,21 @@ enum class EALSRotationMode : uint8
 	Aiming
 };
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSStance : uint8
 {
 	Standing,
 	Crouching
 };
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSViewMode : uint8
 {
 	ThirdPerson,
 	FirstPerson
 };
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSAnimFeatureExample : uint8
 {
 	StrideBlending,
@@ -102,7 +101,7 @@ enum class EALSAnimFeatureExample : uint8
 	SprintImpulse
 };
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSFootstepType : uint8
 {
 	Step,
@@ -111,14 +110,14 @@ enum class EALSFootstepType : uint8
 	Land
 };
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSGroundedEntryState : uint8
 {
 	None,
 	Roll
 };
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSHipsDirection : uint8
 {
 	F,
@@ -129,7 +128,7 @@ enum class EALSHipsDirection : uint8
 	LB
 };
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSMantleType : uint8
 {
 	HighMantle,
@@ -137,7 +136,7 @@ enum class EALSMantleType : uint8
 	FallingCatch
 };
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Category = "ALS|CharacterEnumLibrary")
 enum class EALSMovementDirection : uint8
 {
 	Forward,

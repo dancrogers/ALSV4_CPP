@@ -3,8 +3,7 @@
 // License:         MIT License (http://www.opensource.org/licenses/mit-license.php)
 // Source Code:     https://github.com/dyanikoglu/ALSV4_CPP
 // Original Author: Doğa Can Yanıkoğlu
-// Contributors:    
-
+// Contributors:
 
 #pragma once
 
@@ -26,34 +25,34 @@ class ALSV4_CPP_API UALSPlayerCameraBehavior : public UAnimInstance
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	AALSBaseCharacter* ControlledPawn = nullptr;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|CameraBehavior")
+	AALSBaseCharacter *ControlledPawn = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	APlayerController* PlayerController = nullptr;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|CameraBehavior")
+	APlayerController *PlayerController = nullptr;
 
 protected:
 	void NativeUpdateAnimation(float DeltaSeconds) override;
 
 protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|CameraBehavior")
 	EALSMovementState MovementState;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|CameraBehavior")
 	EALSMovementAction MovementAction;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|CameraBehavior")
 	EALSRotationMode RotationMode;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|CameraBehavior")
 	EALSGait Gait;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|CameraBehavior")
 	EALSStance Stance;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|CameraBehavior")
 	EALSViewMode ViewMode;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|CameraBehavior")
 	bool bRightShoulder;
 };
