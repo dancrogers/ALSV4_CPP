@@ -3,8 +3,7 @@
 // License:         MIT License (http://www.opensource.org/licenses/mit-license.php)
 // Source Code:     https://github.com/dyanikoglu/ALSV4_CPP
 // Original Author: Doğa Can Yanıkoğlu
-// Contributors:    
-
+// Contributors:
 
 #pragma once
 
@@ -25,52 +24,52 @@ class ALSV4_CPP_API AALSPlayerCameraManager : public APlayerCameraManager
 public:
 	AALSPlayerCameraManager();
 
-	UFUNCTION(BlueprintCallable)
-	void OnPossess(AALSBaseCharacter* NewCharacter);
+	UFUNCTION(BlueprintCallable, Category = "ALVS_V4|PlayerCameraManager")
+	void OnPossess(AALSBaseCharacter *NewCharacter);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = "ALVS_V4|PlayerCameraManager")
 	float GetCameraBehaviorParam(FName CurveName) const;
 
 	/** Implement debug logic in BP */
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "ALVS_V4|PlayerCameraManager")
 	void DrawDebugTargets(FVector PivotTargetLocation);
 
 protected:
-	virtual void UpdateViewTargetInternal(FTViewTarget& OutVT, float DeltaTime) override;
+	virtual void UpdateViewTargetInternal(FTViewTarget &OutVT, float DeltaTime) override;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = "ALVS_V4|PlayerCameraManager")
 	static FVector CalculateAxisIndependentLag(
 		FVector CurrentLocation, FVector TargetLocation, FRotator CameraRotation, FVector LagSpeeds, float DeltaTime);
 
-	UFUNCTION(BlueprintCallable)
-	bool CustomCameraBehavior(float DeltaTime, FVector& Location, FRotator& Rotation, float& FOV);
+	UFUNCTION(BlueprintCallable, Category = "ALVS_V4|PlayerCameraManager")
+	bool CustomCameraBehavior(float DeltaTime, FVector &Location, FRotator &Rotation, float &FOV);
 
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	AALSBaseCharacter* ControlledCharacter = nullptr;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "ALVS_V4|PlayerCameraManager")
+	AALSBaseCharacter *ControlledCharacter = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	USkeletalMeshComponent* CameraBehavior = nullptr;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "ALVS_V4|PlayerCameraManager")
+	USkeletalMeshComponent *CameraBehavior = nullptr;
 
 protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALVS_V4|PlayerCameraManager")
 	FVector RootLocation;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALVS_V4|PlayerCameraManager")
 	FTransform SmoothedPivotTarget;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALVS_V4|PlayerCameraManager")
 	FVector PivotLocation;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALVS_V4|PlayerCameraManager")
 	FVector TargetCameraLocation;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALVS_V4|PlayerCameraManager")
 	FRotator TargetCameraRotation;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "ALVS_V4|PlayerCameraManager")
 	FRotator DebugViewRotation;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "ALVS_V4|PlayerCameraManager")
 	FVector DebugViewOffset;
 };

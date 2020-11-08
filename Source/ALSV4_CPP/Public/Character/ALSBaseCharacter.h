@@ -5,7 +5,6 @@
 // Original Author: Doğa Can Yanıkoğlu
 // Contributors:    Haziq Fadhil
 
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -33,10 +32,10 @@ class ALSV4_CPP_API AALSBaseCharacter : public ACharacter
 	GENERATED_BODY()
 
 public:
-	AALSBaseCharacter(const FObjectInitializer& ObjectInitializer);
+	AALSBaseCharacter(const FObjectInitializer &ObjectInitializer);
 
-	UFUNCTION(BlueprintCallable, Category= "Movement")
-	FORCEINLINE class UALSCharacterMovementComponent* GetMyMovementComponent() const { return MyCharacterMovementComponent; }
+	UFUNCTION(BlueprintCallable, Category = "Movement")
+	FORCEINLINE class UALSCharacterMovementComponent *GetMyMovementComponent() const { return MyCharacterMovementComponent; }
 
 	virtual void Tick(float DeltaTime) override;
 
@@ -46,17 +45,17 @@ public:
 
 	virtual void Restart() override;
 
-	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) override;
 
 	virtual void PostInitializeComponents() override;
 
-	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
 
 	/** Ragdoll System */
 
 	/** Implement on BP to get required get up animation according to character's state */
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "ALS|Ragdoll System")
-	UAnimMontage* GetGetUpAnimation(bool bRagdollFaceUpState);
+	UAnimMontage *GetGetUpAnimation(bool bRagdollFaceUpState);
 
 	UFUNCTION(BlueprintCallable, Category = "ALS|Ragdoll System")
 	virtual void RagdollStart();
@@ -146,17 +145,17 @@ public:
 
 	/** Rolling Montage Play Replication*/
 	UFUNCTION(BlueprintCallable, Server, Reliable, Category = "ALS|Character States")
-	void Server_PlayMontage(UAnimMontage* montage, float track);
+	void Server_PlayMontage(UAnimMontage *montage, float track);
 
 	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, Category = "ALS|Character States")
-	void Multicast_PlayMontage(UAnimMontage* montage, float track);
+	void Multicast_PlayMontage(UAnimMontage *montage, float track);
 
 	/** Mantling*/
 	UFUNCTION(BlueprintCallable, Server, Reliable, Category = "ALS|Character States")
-	void Server_MantleStart(float MantleHeight, const FALSComponentAndTransform& MantleLedgeWS, EALSMantleType MantleType);
+	void Server_MantleStart(float MantleHeight, const FALSComponentAndTransform &MantleLedgeWS, EALSMantleType MantleType);
 
 	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, Category = "ALS|Character States")
-	void Multicast_MantleStart(float MantleHeight, const FALSComponentAndTransform& MantleLedgeWS, EALSMantleType MantleType);
+	void Multicast_MantleStart(float MantleHeight, const FALSComponentAndTransform &MantleLedgeWS, EALSMantleType MantleType);
 
 	/** Ragdolling*/
 	UFUNCTION(BlueprintCallable, Category = "ALS|Character States")
@@ -250,12 +249,12 @@ public:
 
 	/** BP implementable function that called when A Montage starts, e.g. during rolling */
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "ALS|Movement System")
-	void Replicated_PlayMontage(UAnimMontage* montage, float track);
-	virtual void Replicated_PlayMontage_Implementation(UAnimMontage* montage, float track);
+	void Replicated_PlayMontage(UAnimMontage *montage, float track);
+	virtual void Replicated_PlayMontage_Implementation(UAnimMontage *montage, float track);
 
 	/** Implement on BP to get required roll animation according to character's state */
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "ALS|Movement System")
-	UAnimMontage* GetRollAnimation();
+	UAnimMontage *GetRollAnimation();
 
 	/** Utility */
 
@@ -275,7 +274,7 @@ public:
 	void SetRightShoulder(bool bNewRightShoulder) { bRightShoulder = bNewRightShoulder; }
 
 	UFUNCTION(BlueprintCallable, Category = "ALS|Camera System")
-	virtual ECollisionChannel GetThirdPersonTraceParams(FVector& TraceOrigin, float& TraceRadius);
+	virtual ECollisionChannel GetThirdPersonTraceParams(FVector &TraceOrigin, float &TraceRadius);
 
 	UFUNCTION(BlueprintCallable, Category = "ALS|Camera System")
 	virtual FTransform GetThirdPersonPivotTarget();
@@ -284,7 +283,7 @@ public:
 	virtual FVector GetFirstPersonCameraTarget();
 
 	UFUNCTION(BlueprintCallable, Category = "ALS|Camera System")
-	void GetCameraParameters(float& TPFOVOut, float& FPFOVOut, bool& bRightShoulderOut) const;
+	void GetCameraParameters(float &TPFOVOut, float &FPFOVOut, bool &bRightShoulderOut) const;
 
 	/** Essential Information Getters/Setters */
 
@@ -292,7 +291,7 @@ public:
 	FVector GetAcceleration() const { return Acceleration; }
 
 	UFUNCTION(BlueprintCallable, Category = "ALS|Essential Information")
-	void SetAcceleration(const FVector& NewAcceleration);
+	void SetAcceleration(const FVector &NewAcceleration);
 
 	UFUNCTION(BlueprintGetter, Category = "ALS|Essential Information")
 	bool IsMoving() const { return bIsMoving; }
@@ -315,7 +314,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "ALS|Essential Information")
 	void SetSpeed(float NewSpeed);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = "ALS|Essential Information")
 	FRotator GetAimingRotation() const { return AimingRotation; }
 
 	UFUNCTION(BlueprintGetter, Category = "ALS|Essential Information")
@@ -325,7 +324,7 @@ public:
 	void SetAimYawRate(float NewAimYawRate);
 
 	UFUNCTION(BlueprintCallable, Category = "ALS|Essential Information")
-	void GetControlForwardRightVector(FVector& Forward, FVector& Right) const;
+	void GetControlForwardRightVector(FVector &Forward, FVector &Right) const;
 
 protected:
 	/** Ragdoll System */
@@ -358,7 +357,7 @@ protected:
 
 	void OnJumped_Implementation() override;
 
-	void Landed(const FHitResult& Hit) override;
+	void Landed(const FHitResult &Hit) override;
 
 	void OnLandFrictionReset();
 
@@ -376,10 +375,10 @@ protected:
 
 	/** Mantle System */
 
-	virtual void MantleStart(float MantleHeight, const FALSComponentAndTransform& MantleLedgeWS, EALSMantleType MantleType);
+	virtual void MantleStart(float MantleHeight, const FALSComponentAndTransform &MantleLedgeWS, EALSMantleType MantleType);
 
-	virtual bool MantleCheck(const FALSMantleTraceSettings& TraceSettings,
-	                         EDrawDebugTrace::Type DebugType = EDrawDebugTrace::Type::ForOneFrame);
+	virtual bool MantleCheck(const FALSMantleTraceSettings &TraceSettings,
+							 EDrawDebugTrace::Type DebugType = EDrawDebugTrace::Type::ForOneFrame);
 
 	UFUNCTION()
 	virtual void MantleUpdate(float BlendIn);
@@ -449,7 +448,7 @@ protected:
 
 protected:
 	/* Custom movement component*/
-	UALSCharacterMovementComponent* MyCharacterMovementComponent;
+	UALSCharacterMovementComponent *MyCharacterMovementComponent;
 
 	/** Input */
 
@@ -519,12 +518,12 @@ protected:
 	FALSMantleTraceSettings FallingTraceSettings;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "ALS|Mantle System")
-	UCurveFloat* MantleTimelineCurve;
+	UCurveFloat *MantleTimelineCurve;
 
 	/** Components */
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "ALS|Components")
-	UTimelineComponent* MantleTimeline = nullptr;
+	UTimelineComponent *MantleTimeline = nullptr;
 
 	/** Essential Information */
 
@@ -663,8 +662,8 @@ protected:
 
 	float PreviousAimYaw = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly)
-	UALSCharacterAnimInstance* MainAnimInstance = nullptr;
+	UPROPERTY(BlueprintReadOnly, Category = "ALS|Base Character")
+	UALSCharacterAnimInstance *MainAnimInstance = nullptr;
 
 	/** Last time the 'first' crouch/roll button is pressed */
 	float LastStanceInputTime = 0.0f;
