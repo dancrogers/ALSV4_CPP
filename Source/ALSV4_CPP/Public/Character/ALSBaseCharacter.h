@@ -400,8 +400,10 @@ protected:
 
 	/** Input */
 
+	UFUNCTION(BlueprintCallable, Category = "ALS|BaseCharacter|Movement")
 	void PlayerForwardMovementInput(float Value);
 
+	UFUNCTION(BlueprintCallable, Category = "ALS|BaseCharacter|Movement")
 	void PlayerRightMovementInput(float Value);
 
 	void PlayerCameraUpInput(float Value);
