@@ -179,7 +179,7 @@ struct FALSMovementSettings
 	UPROPERTY(EditAnywhere, Category = "ALS|CharacterStructLibrary")
 	UCurveFloat *RotationRateCurve = nullptr;
 
-	float GetSpeedForGait(EALSGait Gait)
+	float GetSpeedForGait(EALSGait Gait) const
 	{
 		switch (Gait)
 		{

@@ -1,7 +1,7 @@
 # Advanced Locomotion System V4 on C++
 ![image](https://github.com/dyanikoglu/ALSV4_CPP/raw/main/Resources/Readme_Content_2.gif)
 
-Replicated & optimized C++ port of [Advanced Locomotion System V4](https://www.unrealengine.com/marketplace/en-US/product/advanced-locomotion-system-v1) for **Unreal Engine 4.25** with additional bug fixes.
+Replicated & optimized C++ port of [Advanced Locomotion System V4](https://www.unrealengine.com/marketplace/en-US/product/advanced-locomotion-system-v1) for **Unreal Engine 4.26** with additional bug fixes.
 
 ## Supported Systems
 - Windows 64-bit
@@ -10,7 +10,7 @@ Replicated & optimized C++ port of [Advanced Locomotion System V4](https://www.u
 *Mac, Android, IOS, and console builds are not tested and supported at the moment*
 
 ## Features
-- Full replication support with low bandwith usage
+- Full replication support with low bandwidth usage
 - Plugin structure
 - Highly optimized for production
 - Lots of bug fixes additional to marketplace version

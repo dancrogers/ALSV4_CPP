@@ -32,7 +32,7 @@ public:
 	APlayerController *PlayerController = nullptr;
 
 protected:
-	void NativeUpdateAnimation(float DeltaSeconds) override;
+	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|CameraBehavior")
