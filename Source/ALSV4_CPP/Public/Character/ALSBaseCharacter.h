@@ -35,7 +35,10 @@ public:
 	AALSBaseCharacter(const FObjectInitializer &ObjectInitializer);
 
 	UFUNCTION(BlueprintCallable, Category = "Movement")
-	FORCEINLINE class UALSCharacterMovementComponent *GetMyMovementComponent() const { return MyCharacterMovementComponent; }
+	FORCEINLINE class UALSCharacterMovementComponent *GetMyMovementComponent() const
+	{
+		return MyCharacterMovementComponent;
+	}
 
 	virtual void Tick(float DeltaTime) override;
 
@@ -49,7 +52,7 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
-	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
 
 	/** Ragdoll System */
 
@@ -152,10 +155,12 @@ public:
 
 	/** Mantling*/
 	UFUNCTION(BlueprintCallable, Server, Reliable, Category = "ALS|Character States")
-	void Server_MantleStart(float MantleHeight, const FALSComponentAndTransform &MantleLedgeWS, EALSMantleType MantleType);
+	void Server_MantleStart(float MantleHeight, const FALSComponentAndTransform &MantleLedgeWS,
+							EALSMantleType MantleType);
 
 	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, Category = "ALS|Character States")
-	void Multicast_MantleStart(float MantleHeight, const FALSComponentAndTransform &MantleLedgeWS, EALSMantleType MantleType);
+	void Multicast_MantleStart(float MantleHeight, const FALSComponentAndTransform &MantleLedgeWS,
+							   EALSMantleType MantleType);
 
 	/** Ragdolling*/
 	UFUNCTION(BlueprintCallable, Category = "ALS|Character States")
@@ -351,13 +356,13 @@ protected:
 
 	virtual void OnOverlayStateChanged(EALSOverlayState PreviousState);
 
-	void OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
+	virtual void OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
 
-	void OnEndCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
+	virtual void OnEndCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
 
-	void OnJumped_Implementation() override;
+	virtual void OnJumped_Implementation() override;
 
-	void Landed(const FHitResult &Hit) override;
+	virtual void Landed(const FHitResult &Hit) override;
 
 	void OnLandFrictionReset();
 
@@ -375,7 +380,8 @@ protected:
 
 	/** Mantle System */
 
-	virtual void MantleStart(float MantleHeight, const FALSComponentAndTransform &MantleLedgeWS, EALSMantleType MantleType);
+	virtual void MantleStart(float MantleHeight, const FALSComponentAndTransform &MantleLedgeWS,
+							 EALSMantleType MantleType);
 
 	virtual bool MantleCheck(const FALSMantleTraceSettings &TraceSettings,
 							 EDrawDebugTrace::Type DebugType = EDrawDebugTrace::Type::ForOneFrame);
@@ -450,6 +456,7 @@ protected:
 
 protected:
 	/* Custom movement component*/
+	UPROPERTY()
 	UALSCharacterMovementComponent *MyCharacterMovementComponent;
 
 	/** Input */
@@ -522,6 +529,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "ALS|Mantle System")
 	UCurveFloat *MantleTimelineCurve;
 
+	/** If a dynamic object has a velocity bigger than this value, do not start mantle */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "ALS|Mantle System")
+	float AcceptableVelocityWhileMantling = 10.0f;
+
 	/** Components */
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "ALS|Components")
@@ -530,7 +541,7 @@ protected:
 	/** Essential Information */
 
 	UPROPERTY(BlueprintReadOnly, Category = "ALS|Essential Information")
-	FVector Acceleration;
+	FVector Acceleration = FVector::ZeroVector;
 
 	UPROPERTY(BlueprintReadOnly, Category = "ALS|Essential Information")
 	bool bIsMoving = false;
@@ -556,13 +567,13 @@ protected:
 	/** Replicated Essential Information*/
 
 	UPROPERTY(BlueprintReadOnly, Category = "ALS|Essential Information")
-	float EasedMaxAcceleration;
+	float EasedMaxAcceleration = 0.0f;
 
 	UPROPERTY(BlueprintReadOnly, Replicated, Category = "ALS|Essential Information")
-	FVector ReplicatedCurrentAcceleration;
+	FVector ReplicatedCurrentAcceleration = FVector::ZeroVector;
 
 	UPROPERTY(BlueprintReadOnly, Replicated, Category = "ALS|Essential Information")
-	FRotator ReplicatedControlRotation;
+	FRotator ReplicatedControlRotation = FRotator::ZeroRotator;
 
 	/** State Values */
 
@@ -595,10 +606,10 @@ protected:
 	/** Rotation System */
 
 	UPROPERTY(BlueprintReadOnly, Category = "ALS|Rotation System")
-	FRotator TargetRotation;
+	FRotator TargetRotation = FRotator::ZeroRotator;
 
 	UPROPERTY(BlueprintReadOnly, Category = "ALS|Rotation System")
-	FRotator InAirRotation;
+	FRotator InAirRotation = FRotator::ZeroRotator;
 
 	UPROPERTY(BlueprintReadOnly, Category = "ALS|Rotation System")
 	float YawOffset = 0.0f;
@@ -612,13 +623,13 @@ protected:
 	FALSComponentAndTransform MantleLedgeLS;
 
 	UPROPERTY(BlueprintReadOnly, Category = "ALS|Mantle System")
-	FTransform MantleTarget;
+	FTransform MantleTarget = FTransform::Identity;
 
 	UPROPERTY(BlueprintReadOnly, Category = "ALS|Mantle System")
-	FTransform MantleActualStartOffset;
+	FTransform MantleActualStartOffset = FTransform::Identity;
 
 	UPROPERTY(BlueprintReadOnly, Category = "ALS|Mantle System")
-	FTransform MantleAnimatedStartOffset;
+	FTransform MantleAnimatedStartOffset = FTransform::Identity;
 
 	/** Breakfall System */
 
@@ -647,10 +658,10 @@ protected:
 	bool bRagdollFaceUp = false;
 
 	UPROPERTY(BlueprintReadOnly, Category = "ALS|Ragdoll System")
-	FVector LastRagdollVelocity;
+	FVector LastRagdollVelocity = FVector::ZeroVector;
 
 	UPROPERTY(BlueprintReadOnly, Replicated, Category = "ALS|Ragdoll System")
-	FVector TargetRagdollLocation;
+	FVector TargetRagdollLocation = FVector::ZeroVector;
 
 	/* Server ragdoll pull force storage*/
 	float ServerRagdollPull = 0.0f;
@@ -660,7 +671,7 @@ protected:
 
 	/** Cached Variables */
 
-	FVector PreviousVelocity;
+	FVector PreviousVelocity = FVector::ZeroVector;
 
 	float PreviousAimYaw = 0.0f;
 
@@ -680,7 +691,7 @@ protected:
 	FTimerHandle OnLandedFrictionResetTimer;
 
 	/* Smooth out aiming by interping control rotation*/
-	FRotator AimingRotation;
+	FRotator AimingRotation = FRotator::ZeroRotator;
 
 	/** We won't use curve based movement on networked games */
 	bool bDisableCurvedMovement = false;

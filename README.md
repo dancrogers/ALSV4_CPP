@@ -4,7 +4,7 @@
 
 Includes some changes I had to make to get this working with my project!
 
-Replicated & optimized C++ port of [Advanced Locomotion System V4](https://www.unrealengine.com/marketplace/en-US/product/advanced-locomotion-system-v1) for **Unreal Engine 4.25** with additional bug fixes.
+Replicated & optimized C++ port of [Advanced Locomotion System V4](https://www.unrealengine.com/marketplace/en-US/product/advanced-locomotion-system-v1) for **Unreal Engine 4.26** with additional bug fixes.
 
 ## Supported Systems
 
@@ -15,7 +15,7 @@ _Mac, Android, IOS, and console builds are not tested and supported at the momen
 
 ## Features
 
-- Full replication support with low bandwith usage
+- Full replication support with low bandwidth usage
 - Plugin structure
 - Highly optimized for production
 - Lots of bug fixes additional to marketplace version
